@@ -2,32 +2,39 @@
 # a, b, c
 # {'coef_a': ...., 'coef_b': ..., 'coef_c': ...}
 
-def show_quadr_eq(d):
-    a = d['coef_a']
-    b = d['coef_b']
-    c = d['coef_c']
-    line_no = d['line_no']
-    print('Рівняння з коефіцієнтами:', a, b, c, 'із рядка №', line_no)
+class QuadraticEquation:
+    def __init__(d, a, b, c, line_no):
+        d.coef_a = a
+        d.coef_b = b
+        d.coef_c = c
+        d.line_no = line_no
 
-def solve_quadr_eq(d):
-    a = d['coef_a']
-    b = d['coef_b']
-    c = d['coef_c']
+    def show_quadr_eq(d):
+        a = d.coef_a
+        b = d.coef_b
+        c = d.coef_c
+        line_no = d.line_no
+        print('Рівняння з коефіцієнтами:', a, b, c, 'із рядка №', line_no)
 
-    if a != 0 :  # або abs(a)<1e-12
-        D = b**2 - 4 * d['coef_a'] * c
-        if D < 0:
-            print("Розв'язків немає")
-        elif D == 0: # або abs(D)<1e-12
-            x0 = -b/(2*d['coef_a'])
-            print("Розв'язок:", x0)
+    def solve_quadr_eq(d):
+        a = d.coef_a
+        b = d.coef_b
+        c = d.coef_c
+
+        if a != 0 :  # або abs(a)<1e-12
+            D = b**2 - 4 * a * c
+            if D < 0:
+                print("Розв'язків немає")
+            elif D == 0: # або abs(D)<1e-12
+                x0 = -b/(2*a)
+                print("Розв'язок:", x0)
+            else:
+                x1 = (-b - D**0.5)/(2*a)
+                x2 = (-b + D**0.5)/(2*a)
+                print("Розв'язки:", x1, x2)
+            #
         else:
-            x1 = (-b - D**0.5)/(2*a)
-            x2 = (-b + D**0.5)/(2*a)
-            print("Розв'язки:", x1, x2)
-        #
-    else:
-        print('Це не квадратне рівняння')
+            print('Це не квадратне рівняння')
 
 
 
@@ -40,8 +47,6 @@ with open('input01.txt') as f:
             continue
         d = s.split()
         cfs = list(map(int, d))
-        d = {'coef_a': cfs[0], 'coef_b': cfs[1], 'coef_c': cfs[2],
-             'line_no': j}
-
-        show_quadr_eq(d)
-        solve_quadr_eq(d)
+        e = QuadraticEquation(cfs[0], cfs[1], cfs[2], j)
+        e.show_quadr_eq()
+        e.solve_quadr_eq()
