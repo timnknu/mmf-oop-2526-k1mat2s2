@@ -3,23 +3,23 @@
 # {'coef_a': ...., 'coef_b': ..., 'coef_c': ...}
 
 class QuadraticEquation:
-    def __init__(d, a, b, c, line_no):
-        d.coef_a = a
-        d.coef_b = b
-        d.coef_c = c
-        d.line_no = line_no
+    def __init__(self, a, b, c, line_no):
+        self.coef_a = a
+        self.coef_b = b
+        self.coef_c = c
+        self.line_no = line_no
 
-    def show_quadr_eq(d):
-        a = d.coef_a
-        b = d.coef_b
-        c = d.coef_c
-        line_no = d.line_no
+    def show_quadr_eq(self):
+        a = self.coef_a
+        b = self.coef_b
+        c = self.coef_c
+        line_no = self.line_no
         print('Рівняння з коефіцієнтами:', a, b, c, 'із рядка №', line_no)
 
-    def solve_quadr_eq(d):
-        a = d.coef_a
-        b = d.coef_b
-        c = d.coef_c
+    def solve_quadr_eq(self):
+        a = self.coef_a
+        b = self.coef_b
+        c = self.coef_c
 
         if a != 0 :  # або abs(a)<1e-12
             D = b**2 - 4 * a * c
