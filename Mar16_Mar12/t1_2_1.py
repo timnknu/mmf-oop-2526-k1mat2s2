@@ -4,7 +4,7 @@
 class QuadraticEquation:
     def __init__(self, data, line_no):
         if isinstance(data, str): # чи містить змінна data щось, що ми звикли називати "текстовий рядок" ?
-            print('нам передали в змінній data текстовий рядок')
+            #print('нам передали в змінній data текстовий рядок')
             d = data.split()
             cfs = list(map(int, d))
             self.coef_a = cfs[0]
@@ -12,7 +12,7 @@ class QuadraticEquation:
             self.coef_c = cfs[2]
             self.line_no = line_no
         elif isinstance(data, list): # чи містить змінна data щось, що ми звикли називати "список" ?
-            print('нам передали в змінній data текстовий список')
+            #print('нам передали в змінній data текстовий список')
             self.coef_a = data[0]
             self.coef_b = data[1]
             self.coef_c = data[2]
@@ -51,9 +51,12 @@ class QuadraticEquation:
             print('Це не квадратне рівняння')
             return None
 
+##
 
 
+equations_lst = []
 
+# зчитування рівнянь із файла
 with open('input01.txt') as f:
     j = 0
     for line in f:
@@ -63,5 +66,13 @@ with open('input01.txt') as f:
         j += 1
 
         e = QuadraticEquation(line, j)
-        e.show_quadr_eq()
-        e.solve_quadr_eq()
+        equations_lst.append(e)
+
+# аналізу зчитаних рівнянь -- друкуватимемо лише ті, які мають 1 розв'язок
+equations_with_one_root = []
+for eq in equations_lst:
+    roots = eq.solve_quadr_eq()
+    if isinstance(roots, list):
+        if len(roots)==1:
+            equations_with_one_root.append(eq)
+print(f'Загалом було {len(equations_with_one_root)} рівнянь з одним розв"язком')
