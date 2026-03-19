@@ -16,7 +16,7 @@ class Triangle:
 
     def set_random_color(self):
         possible_colors = ['red', 'green', 'blue', 'yellow']
-        i = random.randint(0, len(possible_colors))
+        i = random.randint(0, len(possible_colors)-1)
         self._color = possible_colors[i]
     def set_position(self, x, y):
         self._position = (x, y)
@@ -49,10 +49,10 @@ for i in range(5):
                   random.randint(-50, 50))
     tr.randomize_position()
     tr.set_random_color()
-    tr.draw()
-#     my_objects.append(tr)
-#
-# for obj in my_objects:
-#     obj.draw()
+    my_objects.append(tr)
+######
+
+for obj in my_objects:
+    obj.draw()
 
 turtle.mainloop()
