@@ -2,9 +2,11 @@ import turtle
 
 turtle.forward(100)
 
-print('BEFORE')
+turtle.setheading(45)
+turtle.forward(150)
 
-#turtle.mainloop()
-turtle.exitonclick()
+turtle.setheading(135)
+turtle.forward(150)
 
-print('AFTER')
+
+turtle.mainloop()
