@@ -22,6 +22,8 @@ class EquationSolutions:
             return math.inf
         else:
             return len(self._storage)
+    def get_tuple(self):
+        return self._storage
 
 
 class LinearEquation:
@@ -43,7 +45,52 @@ class LinearEquation:
                 obj = EquationSolutions([], all_real_numbers=True)
                 return obj
 #
-e = LinearEquation(0, 1)
-xs = e.solve()
+# e = LinearEquation(0, 1)
+# xs = e.solve()
+# xs.show_me()
+# print(xs.get_number_of_roots())
+
+
+class QuadraticEquation(LinearEquation):
+    def __init__(self, coef_a, coef_b, coef_c):
+        super().__init__(coef_b, coef_c)
+        #LinearEquation.__init__(self, coef_b, coef_c)
+        self._a = coef_a
+    def solve(self):
+        if self._a == 0:
+            xs = super().solve()
+            return xs
+        else:
+            D = self._b**2 - 4 * self._a * self._c
+            if D < 0:
+                obj = EquationSolutions([], all_real_numbers=False)
+                return obj
+            elif D == 0:
+                x1 = -self._b / (2*self._a)
+                return EquationSolutions([x1], all_real_numbers=False)
+            else:
+                x1 = (-self._b + D**0.5) / (2 * self._a)
+                x2 = (-self._b - D**0.5) / (2 * self._a)
+                return EquationSolutions([x1, x2], all_real_numbers=False)
+        #
+class BiQuadraticEquation(QuadraticEquation):
+    def solve(self):
+        xs = super().solve()
+        nRoots = xs.get_number_of_roots()
+        if nRoots == 0:
+            return xs
+        elif nRoots == math.inf:
+            return xs
+        else:
+            roots = []
+            for x in xs.get_tuple():
+                if x >= 0:
+                    roots.append( x**0.5 )
+                    roots.append( - x**0.5 )
+            return EquationSolutions(roots, all_real_numbers=False)
+
+
+obj = BiQuadraticEquation(1, -2, -10)
+xs = obj.solve()
 xs.show_me()
-print(xs.get_number_of_roots())
+
