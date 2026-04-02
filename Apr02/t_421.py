@@ -27,19 +27,24 @@ class Circle(Figure):
         turtle.circle(self._r)
 
 
-class Square(Figure):
-    def __init__(self, x0, y0, side):
+class Rectangle(Figure):
+    def __init__(self, x0, y0, sideX, sideY):
         super().__init__(x0, y0)
-        self._a = side
+        self._a = sideX
+        self._b = sideY
     def _draw(self):
         turtle.penup()
         turtle.goto(self._x0, self._y0)
         turtle.pendown()
-        turtle.goto(self._x0, self._y0 + self._a)
-        turtle.goto(self._x0 + self._a, self._y0 + self._a)
+        turtle.goto(self._x0, self._y0 + self._b)
+        turtle.goto(self._x0 + self._a, self._y0 + self._b)
         turtle.goto(self._x0 + self._a, self._y0)
         turtle.goto(self._x0, self._y0)
 
+class Square(Rectangle):
+    def __init__(self, x0, y0, a):
+        super().__init__(x0, y0, a, a)
+        
 
 turtle.speed(1)
 
