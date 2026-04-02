@@ -1,5 +1,6 @@
 import turtle
 import random
+import math
 
 turtle.speed(3)
 
@@ -9,6 +10,11 @@ class Triangle:
         self._vertex1 = (x1, y1) # позиція другої відносно першої вершини
         self._vertex2 = (x2, y2) # позиція третьої відносно першої вершини
         self._color = "black"
+        self._alpha_angle = 0.0
+
+    def set_rot_angle(self, alpha):
+        self._alpha_angle = alpha
+
     def randomize_position(self):
         x0 = random.randint(-250, 250)
         y0 = random.randint(-250, 250)
@@ -18,15 +24,26 @@ class Triangle:
         possible_colors = ['red', 'green', 'blue', 'yellow']
         i = random.randint(0, len(possible_colors)-1)
         self._color = possible_colors[i]
+
     def set_position(self, x, y):
         self._position = (x, y)
+
     def set_color(self, color):
         self._color = color
+
+    def _rotate_vec(self, x, y, alpha):
+        x_new = math.cos(alpha) * x + math.sin(alpha) * y
+        y_new = -math.sin(alpha) * x + math.cos(alpha) * y
+        return x_new, y_new
+
     def draw(self):
         x0 = self._position[0]
         y0 = self._position[1]
-        x1, y1 = self._vertex1
-        x2, y2 = self._vertex2
+        a = self._alpha_angle
+        x1, y1 = self._rotate_vec(*self._vertex1, a)
+        x2, y2 = self._rotate_vec(self._vertex2[0], self._vertex2[1], a)
+
+
         turtle.penup()
         turtle.goto(x0, y0)
         turtle.pendown()
@@ -40,6 +57,19 @@ class Triangle:
         turtle.goto(x0, y0)
 
         turtle.end_fill()
+
+tr = Triangle(random.randint(-50, 50),
+              random.randint(-50, 50),
+              random.randint(-50, 50),
+              random.randint(-50, 50))
+for i in range(10):
+    tr.set_rot_angle(i/10 * math.pi*2)
+    tr.draw()
+    tr.set_color('white')
+    tr.draw()
+    tr.set_random_color()
+
+turtle.mainloop()
 #
 my_objects = []
 for i in range(5):
