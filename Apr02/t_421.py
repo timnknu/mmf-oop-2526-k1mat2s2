@@ -44,21 +44,26 @@ class Rectangle(Figure):
 class Square(Rectangle):
     def __init__(self, x0, y0, a):
         super().__init__(x0, y0, a, a)
-        
+
+class Car(Figure):
+    def __init__(self, x0, y0):
+        super().__init__(x0, y0)
+        self._s = Rectangle(x0, y0, 150, 50)
+        self._s.set_color('blue')
+        self._w1 = Circle(x0 + 40, y0, 30)
+        self._w2 = Circle(x0 + 150 - 40, y0, 30)
+    def _draw(self):
+        self._s._draw()
+        self._w1._draw()
+        self._w2._draw()
+
 
 turtle.speed(1)
 
 # f = Figure(100, 50)
 # f.show()
 
-s = Square(100, 50, 50)
-s.set_color('blue')
-s.show()
-s.hide()
-
-c = Circle(-150, 80, 70)
-c.show()
-c.hide()
+c = Car(-200, 50)
 c.show()
 
 turtle.mainloop()
