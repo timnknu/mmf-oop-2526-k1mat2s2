@@ -4,7 +4,7 @@ class Vector:
     def __init__(self, elemslst):
         self._elems = copy.deepcopy(elemslst)
     def __str__(self):
-        #s = ""
+        # s = ""
         # for e in self._elems:
         #     s = s + str(e) + ";"
         # s = "{" + s[:-1] + "}"
@@ -49,17 +49,15 @@ class Vector:
     def __len__(self):
         return len(self._elems)
 
-L = [1, 2, 15]
-a = Vector(L)
+row1 = Vector([1, 2, 15])
+row2 = Vector([100, 150, 1500])
 
-print(len(a))
-a[2] = 590
+M = Vector([row1, row2])
 
-print(a[2])
+print(M)
 
+row3 = Vector([-15, -42, -5])
+row4 = Vector([-21, -14, -35])
+N = Vector([row3, row4])
 
-b = Vector([100, 150, 1500])
-
-print(a + b)
-
-
+print(M + N)
