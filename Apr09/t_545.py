@@ -11,14 +11,24 @@ class Vector:
         s = '; '.join(map(str, self._elems))
         s = "(" + s + ")"
         return s
+    def __add__(self, other):
+        newelems = []
+        if len(self._elems) != len(other._elems):
+            raise ValueError("Вектори мають різну кількість елементів")
+        #assert len(self._elems) == len(other._elems)
+        for i in range(len(self._elems)):
+            newelems.append( self._elems[i] + other._elems[i] )
 
-L = [1, 2, [5, 15]]
-obj = Vector(L)
+        r = Vector(newelems)
+        return r
 
-print(obj)
+L = [1, 2, 15]
+a = Vector(L)
 
-L[-1].clear()
-L.append('hello')
+b = Vector([-8, 10, 100])
 
-print(obj)
-print(L)
+print(a)
+print(b)
+
+print(a + b)
+
