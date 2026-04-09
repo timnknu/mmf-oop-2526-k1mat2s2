@@ -1,6 +1,8 @@
+import copy
+
 class Vector:
     def __init__(self, elemslst):
-        self._elems = elemslst
+        self._elems = copy.deepcopy(elemslst)
     def __str__(self):
         #s = ""
         # for e in self._elems:
@@ -10,7 +12,13 @@ class Vector:
         s = "(" + s + ")"
         return s
 
-L = [1, 2, 5]
+L = [1, 2, [5, 15]]
 obj = Vector(L)
 
 print(obj)
+
+L[-1].clear()
+L.append('hello')
+
+print(obj)
+print(L)
