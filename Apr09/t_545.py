@@ -28,10 +28,14 @@ class Vector:
         r = Vector(newelems)
         return r
 
+    def __radd__(self, other):
+        #return self.__add__(other)
+        return self + other
+
 L = [1, 2, 15]
 a = Vector(L)
 
 print(a)
 
-print(a + 1000)
+print(a + a)
 
