@@ -32,10 +32,20 @@ class Vector:
         #return self.__add__(other)
         return self + other
 
+    def __mul__(self, other):
+        newelems = []
+        if isinstance(other, (float, int)):
+            for i in range(len(self._elems)):
+                newelems.append(self._elems[i] * other)
+            r = Vector(newelems)
+            return r
+        else:
+            raise ValueError("Невідомий тип співмножника")
+
 L = [1, 2, 15]
 a = Vector(L)
 
 print(a)
 
-print(a + a)
+print(a * 2)
 
