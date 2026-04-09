@@ -18,10 +18,10 @@ class Vector:
                 raise ValueError("Вектори мають різну кількість елементів")
             #assert len(self._elems) == len(other._elems)
             for i in range(len(self._elems)):
-                newelems.append( self._elems[i] + other._elems[i] )
+                newelems.append( self[i] + other[i] )
         elif isinstance(other, (float, int)):
             for i in range(len(self._elems)):
-                newelems.append( self._elems[i] + other )
+                newelems.append( self[i] + other )
         else:
             raise ValueError("Невідомий тип доданка")
 
@@ -36,7 +36,7 @@ class Vector:
         newelems = []
         if isinstance(other, (float, int)):
             for i in range(len(self._elems)):
-                newelems.append(self._elems[i] * other)
+                newelems.append(self[i] * other)
             r = Vector(newelems)
             return r
         else:
@@ -52,6 +52,10 @@ a = Vector(L)
 a[2] = 590
 
 print(a[2])
-print(L)
+
+
+b = Vector([100, 150, 1500])
+
+print(a + b)
 
 
