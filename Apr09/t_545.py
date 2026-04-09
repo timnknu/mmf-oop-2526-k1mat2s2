@@ -14,13 +14,13 @@ class Vector:
     def __add__(self, other):
         newelems = []
         if isinstance(other, Vector):
-            if len(self._elems) != len(other._elems):
+            if len(self) != len(other):
                 raise ValueError("Вектори мають різну кількість елементів")
             #assert len(self._elems) == len(other._elems)
-            for i in range(len(self._elems)):
+            for i in range(len(self)):
                 newelems.append( self[i] + other[i] )
         elif isinstance(other, (float, int)):
-            for i in range(len(self._elems)):
+            for i in range(len(self)):
                 newelems.append( self[i] + other )
         else:
             raise ValueError("Невідомий тип доданка")
@@ -35,7 +35,7 @@ class Vector:
     def __mul__(self, other):
         newelems = []
         if isinstance(other, (float, int)):
-            for i in range(len(self._elems)):
+            for i in range(len(self)):
                 newelems.append(self[i] * other)
             r = Vector(newelems)
             return r
@@ -46,9 +46,13 @@ class Vector:
     def __setitem__(self, key, value):
         self._elems[key] = value
 
+    def __len__(self):
+        return len(self._elems)
+
 L = [1, 2, 15]
 a = Vector(L)
 
+print(len(a))
 a[2] = 590
 
 print(a[2])
