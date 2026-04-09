@@ -41,11 +41,17 @@ class Vector:
             return r
         else:
             raise ValueError("Невідомий тип співмножника")
+    def __getitem__(self, item):
+        return self._elems[item]
+    def __setitem__(self, key, value):
+        self._elems[key] = value
 
 L = [1, 2, 15]
 a = Vector(L)
 
-print(a)
+a[2] = 590
 
-print(a * 2)
+print(a[2])
+print(L)
+
 
