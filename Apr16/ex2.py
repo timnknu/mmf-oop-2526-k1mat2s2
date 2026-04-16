@@ -19,5 +19,6 @@ class MyIterable:
 obj = MyIterable()
 
 for e in obj:
-    print('---------')
     print(e)
+    for g in obj:
+        print('    ', g)
