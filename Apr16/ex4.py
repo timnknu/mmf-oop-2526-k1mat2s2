@@ -14,17 +14,17 @@ class PrimesIterator:
                     break
 
             if is_prime:
-                print(self._candidate)
                 self._known_primes.append(self._candidate)
                 self._candidate += 1
-                break
+                return self._candidate
             self._candidate += 1
     #
 
-itr = PrimesIterator()
-next(itr)
-next(itr)
-next(itr)
-next(itr)
-next(itr)
-next(itr)
+class Primes:
+    def __iter__(self):
+        finger = PrimesIterator()
+        return finger
+
+obj = Primes()
+for e in obj:
+    print('Нове просте число:', e)
