@@ -16,12 +16,14 @@ value_var = tk.StringVar(value="Initial text")
 entry = ttk.Entry(root, textvariable=value_var) # створюємо віджет Entry і зв'язуємо його вміст зі змінною value_var
 entry.pack(fill="x", padx=10, pady=10)
 
-status = ttk.Label(root) # створюємо віджет Label для відображення статусу
+status = ttk.Label(root, text='LABEL') # створюємо віджет Label для відображення статусу
 status.pack(fill="x", padx=10, pady=(0, 10))
 
 def read_value():
     print('The value is', value_var.get())
-    status.config(text=f"entry.get() = {entry.get()}; StringVar.get() = {value_var.get()}")
+    s = f"entry.get() = {entry.get()}; StringVar.get() = {value_var.get()}"
+    status.config(text=s)
+    #status['text'] = 'WWWW'
 
 def set_with_variable():
     value_var.set("set via StringVar")
