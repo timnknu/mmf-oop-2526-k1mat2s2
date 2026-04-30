@@ -1,0 +1,16 @@
+Документація та корисні посилання:
+
+
+https://tkdocs.com/tutorial/index.html
+
+https://docs.python.org/3/library/tkinter.html#tkinter-variables
+
+"конструктори" графічних інтерфейсів для tkinter:
+https://web.archive.org/web/20240302173000/https://visualtk.com/
+https://sourceforge.net/projects/page/
+
+
+https://www.geeksforgeeks.org/python/python-tkinter-tutorial/
+
+https://www.tutorialspoint.com/python/python_gui_programming.htm
+
