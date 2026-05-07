@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 import curr_conv_logic
 
 root = tk.Tk()
@@ -14,12 +15,19 @@ cb = ttk.Combobox(root, values=["USD", "UAH", "EUR"],
 cb.pack()
 
 
+
 def btn_on_click():
     print('Button clicked', utxt.get(), cb_val.get())
+    try:
+        v_new = curr_conv_logic.convert_value(utxt.get(), cb_val.get())
+        lbl_txt.set(str(v_new))
+    except curr_conv_logic.InvalidFormatError:
+        messagebox.showerror("Error", 'Invalid Format', parent=root)
+    except curr_conv_logic.UnknownCurrencyError:
+        messagebox.showerror("Error", 'Unknown currency', parent=root)
+    except curr_conv_logic.NegativeAmountError:
+        messagebox.showerror("Error", 'Negative amount', parent=root)
 
-    v_new = curr_conv_logic.convert_value(utxt.get(), cb_val.get())
-
-    lbl_txt.set( str(v_new) )
 
 
 btn = ttk.Button(root, text="Convert!", command=btn_on_click)
