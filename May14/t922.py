@@ -17,20 +17,18 @@ class FileReader:
 #Виведіть усі прочитані рядки на екран
 class LinePrinter:
     def onReceive(self, line):
-        #....
-        pass
+        print('LinePrinter says:', line)
 
 #Підрахуйте v слів у текстовому файлі
 class WordCounter:
     def onReceive(self, line):
-        #....
-        pass
+        print('WordCounter says:', len(line.split()))
 
 #Перевірте чи містить текстовий файл задане слово
 class WordChecker:
     def onReceive(self, line):
-        #....
-        pass
+        w = 'spam'
+        print('WordChecker says:', w in line)
 
 ######################
 
