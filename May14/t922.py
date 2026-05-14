@@ -1,9 +1,17 @@
 class FileReader:
     def __init__(self, fname):
         self._fname = fname
+        self._subs = []
+
+    def subscribe(self, obj):
+        self._subs.append(obj)
 
     def run(self):
         with open(self._fname) as f:
+            for line in f:
+                s = line.rstrip('\r\n')
+                for obj in self._subs:
+                    obj.onReceive(s)
 
 
 #Виведіть усі прочитані рядки на екран
