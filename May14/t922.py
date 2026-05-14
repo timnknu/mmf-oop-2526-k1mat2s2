@@ -17,16 +17,11 @@ class FileReader:
                 for obj in self._subs:
                     obj.onReceive(s)
 
-#class Observer(metaclass=abc.ABCMeta):
-class Observer(abc.ABC):
-    @abc.abstractmethod
-    def onReceive(self, line):
-        pass
-
 class BasicBeautifiedPrinter:
     def __init__(self, beautify = True):
         self._beutify = beautify
-    def my_print(self, line):
+    def my_print(self, *args):
+        line = ' '.join(map(str, args))
         if self._beutify:
             print('*' * (len(line) + 4))
             print(f'* {line} *')
@@ -35,30 +30,34 @@ class BasicBeautifiedPrinter:
             print(line)
 
 
+#class Observer(metaclass=abc.ABCMeta):
+class Observer(abc.ABC):
+    @abc.abstractmethod
+    def onReceive(self, line):
+        pass
 
-b = BasicBeautifiedPrinter(False)
-b.my_print('Hello world')
+
 
 #Виведіть усі прочитані рядки на екран
-class LinePrinter(Observer):
+class LinePrinter(BasicBeautifiedPrinter, Observer):
     def onReceive(self, line):
-        print('LinePrinter says:', line)
+        self.my_print('LinePrinter says:', line)
 
 #Підрахуйте v слів у текстовому файлі
-class WordCounter(Observer):
+class WordCounter(BasicBeautifiedPrinter, Observer):
     def onReceive(self, line):
-        print('WordCounter says:', len(line.split()))
+        self.my_print('WordCounter says:', len(line.split()))
 
 #Перевірте чи містить текстовий файл задане слово
-class WordChecker(Observer):
+class WordChecker(BasicBeautifiedPrinter, Observer):
     def onReceive(self, line):
         w = 'spam'
-        print('WordChecker says:', w in line)
+        self.my_print('WordChecker says:', w in line)
 
 ######################
 
-class LengthEvaluator:
-    def get_length(self, line):
+class LengthEvaluator(Observer):
+    def onReceive(self, line):
         print('Length is', len(line))
 
 if __name__ == "__main__":
