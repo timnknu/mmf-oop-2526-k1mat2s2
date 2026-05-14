@@ -1,26 +1,33 @@
 class FileReader:
-    #......
-    pass
+    def __init__(self, fname):
+        self._fname = fname
+
+    def run(self):
+        with open(self._fname) as f:
+
 
 #Виведіть усі прочитані рядки на екран
 class LinePrinter:
-    #....
-    pass
+    def onReceive(self, line):
+        #....
+        pass
 
 #Підрахуйте v слів у текстовому файлі
 class WordCounter:
-    #....
-    pass
+    def onReceive(self, line):
+        #....
+        pass
 
 #Перевірте чи містить текстовий файл задане слово
 class WordChecker:
-    #....
-    pass
+    def onReceive(self, line):
+        #....
+        pass
 
 ######################
 
 if __name__ == "__main__":
-    fr = FileReader()
+    fr = FileReader('inp.txt')
 
     obj1 = LinePrinter()
     obj2 = WordCounter()
